@@ -8,6 +8,7 @@ if(len(sys.argv) < 2):
 try:
   json_file = open(sys.argv[1], 'r') #getting filename from command line
   data = json.load(json_file)
+  json_file.close()
 except IOError as e:
     print("ERROR file not found")
     exit()
