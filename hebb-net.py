@@ -3,27 +3,27 @@ import sys
 
 if(len(sys.argv) < 2):
   print("ERROR need a file")
-  exit()
+  exit(1)
 
 try:
   json_file = open(sys.argv[1], 'r') #getting filename from command line
   data = json.load(json_file)
   json_file.close()
 except IOError as e:
-    print("ERROR file not found")
-    exit()
+    print("ERROR file input")
+    exit(1)
 
-t = data['target']
-x = data['training']
+target = data['target']
+training = data['training']
 
 # initialize weights
-w = [0] * (len(x) // 2) #integer division
+w = [0] * (len(training) // 2) #integer division
 b = 0
 
-for row in range(len(x)):
-  y = t[row]
-  x_1 = x[row][0]
-  x_2 = x[row][1]
+for row in range(len(training)):
+  y = target[row]
+  x_1 = training[row][0]
+  x_2 = training[row][1]
   w[0] += x_1*y
   w[1] += x_2*y
   b = b + y
